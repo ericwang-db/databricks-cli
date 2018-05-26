@@ -70,10 +70,12 @@ def configure_cli(token, insecure):
     Configures host and authentication info for the CLI.
     """
     profile = get_profile_from_context()
+    # convert insecure to string representation if specified
+    insecure_str = str(insecure) if insecure is not None else None
     if token:
-        _configure_cli_token(profile, str(insecure))
+        _configure_cli_token(profile, insecure_str)
     else:
-        _configure_cli_password(profile, str(insecure))
+        _configure_cli_password(profile, insecure_str)
 
 
 class _DbfsHost(ParamType):
